@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Boolflix</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  </head>
+  <body>
+    <header>
+      <!-- <div class="logo">
+        <img src="img/Boolflixlogo.jpg" alt="">
+      </div> -->
+      <div class="ricerca">
+        <input class="search" type="text" name="" value="" placeholder="Cerca il tuo film">
+        <button type="button" name="button">Cerca</button>
+      </div>
+    </header>
+
+    <div class="box">
+
+    </div>
+
+    <script id="film-template" type="text/x-handlebars-template">
+      <div class="film">
+        <h3>Titolo: {{titolo}}</h3>
+        <h4>Titolo originale: {{titoloOriginale}}</h4>
+        <h4>Lingua: {{lingua}}</h4>
+        <h4>Voto: {{voto}}</h4>
+      </div>
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
