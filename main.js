@@ -8,12 +8,9 @@ $(document).ready(function() {
   });
 
   function cerca() {
-          var queryRicerca = $('.search').val().toLowerCase();
-          $('.search').val('');
-          apiRicercaFilm(queryRicerca);
-  };
-
-  function apiRicercaFilm(queryRicerca) {
+    var queryRicerca = $('.search').val().toLowerCase();
+    $('.search').val('');
+    $('.box').empty("");
 
     $.ajax({
       url: "https://api.themoviedb.org/3/search/movie",
@@ -29,8 +26,9 @@ $(document).ready(function() {
           var context = {
             titolo: film[i].title,
             titoloOriginale: film[i].original_title,
-            lingua: film[i].original_languages,
-            voto: film[i].vote_average
+            lingua: film[i].original_language,
+            voto: film[i].vote_average,
+            cover: film[i].poster_path
           };
           var source = $('#film-template').html();
           var template = Handlebars.compile(source);
