@@ -54,8 +54,8 @@ $(document).ready(function() {
         var tv = data.results;
         for (var i = 0; i < tv.length; i++) {
           var context = {
-            titolo: tv[i].title,
-            titoloOriginale: tv[i].original_title,
+            titolo: tv[i].name,
+            titoloOriginale: tv[i].original_name,
             flag: flags(tv[i].original_language),
             voto: stelle(tv[i].vote_average),
             cover: tv[i].poster_path,
@@ -85,7 +85,7 @@ $(document).ready(function() {
   };
 
 
-  function stelle (voto){                      //trasformazione voto in stelle
+  function stelle(voto){                      //trasformazione voto in stelle
     var stella = '';
     voto = Math.ceil(voto / 2);
     for (var i = 1; i <= 5; i++) {
