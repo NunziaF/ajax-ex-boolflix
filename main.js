@@ -27,7 +27,7 @@ $(document).ready(function() {
             titolo: film[i].title,
             titoloOriginale: film[i].original_title,
             flag: flags(film[i].original_language),
-            voto: film[i].vote_average,
+            voto: stelle(film[i].vote_average),
             cover: film[i].poster_path,
             tipo: "film"
           };
@@ -57,7 +57,7 @@ $(document).ready(function() {
             titolo: tv[i].title,
             titoloOriginale: tv[i].original_title,
             flag: flags(tv[i].original_language),
-            voto: tv[i].vote_average,
+            voto: stelle(tv[i].vote_average),
             cover: tv[i].poster_path,
             tipo: "serie tv"
           };
@@ -82,6 +82,20 @@ $(document).ready(function() {
       flag = '<img src="https://www.countryflags.io/gb/shiny/64.png">'
     }
     return flag;
+  };
+
+
+  function stelle (voto){                      //trasformazione voto in stelle
+    var stella = '';
+    voto = Math.ceil(voto / 2);
+    for (var i = 1; i <= 5; i++) {
+      if (i <= voto) {
+       stella += '<i class="fas fa-star"></i>';
+      } else {
+      stella += '<i class="far fa-star"></i>';
+      }
+    }
+    return stella;
   };
 
 });
