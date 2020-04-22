@@ -12,7 +12,7 @@ $(document).ready(function() {
     $('.search').val('');
     $('.box').empty("");
 
-    $.ajax({ //chiamata per film
+    $.ajax({                                              //chiamata per film
       url: "https://api.themoviedb.org/3/search/movie",
       method: "GET",
       data: {
@@ -26,7 +26,7 @@ $(document).ready(function() {
           var context = {
             titolo: film[i].title,
             titoloOriginale: film[i].original_title,
-            lingua: film[i].original_language,
+            flag: flags(film[i].original_language),
             voto: film[i].vote_average,
             cover: film[i].poster_path,
             tipo: "film"
@@ -42,7 +42,7 @@ $(document).ready(function() {
       }
     });
 
-    $.ajax({  //chiamata per serie tv
+    $.ajax({                                          //chiamata per serie tv
       url: "https://api.themoviedb.org/3/search/tv",
       method: "GET",
       data: {
@@ -51,14 +51,14 @@ $(document).ready(function() {
         query: queryRicerca
       },
       success: function(data) {
-        var film = data.results;
-        for (var i = 0; i < film.length; i++) {
+        var tv = data.results;
+        for (var i = 0; i < tv.length; i++) {
           var context = {
-            titolo: film[i].title,
-            titoloOriginale: film[i].original_title,
-            lingua: film[i].original_language,
-            voto: film[i].vote_average,
-            cover: film[i].poster_path,
+            titolo: tv[i].title,
+            titoloOriginale: tv[i].original_title,
+            flag: flags(tv[i].original_language),
+            voto: tv[i].vote_average,
+            cover: tv[i].poster_path,
             tipo: "serie tv"
           };
           var source = $('#film-template').html();
@@ -71,5 +71,17 @@ $(document).ready(function() {
         alert("Chiamata fallita!!!");
       }
     });
+
   };
+
+  function flags(lingua){                        //sostituzione della lingua con le bandiere
+    var flag = lingua;
+    if (flag === "it") {
+      flag = '<img src="https://www.countryflags.io/it/shiny/64.png">'
+    } else if (flag === "en") {
+      flag = '<img src="https://www.countryflags.io/gb/shiny/64.png">'
+    }
+    return flag;
+  };
+
 });

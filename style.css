@@ -19,7 +19,12 @@ header {
 	padding-left: 20px;
 }
 
-img {
+.logo img {
+	width: 150px;
+	height: auto;
+}
+
+.copertina img {
 	width: 150px;
 	height: auto;
 }
@@ -46,4 +51,9 @@ input {
 .box {
 	display: flex;
 	flex-wrap:wrap;
+}
+
+.bandiere {
+	display: flex;
+	align-items:center; 
 }
