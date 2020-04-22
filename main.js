@@ -12,7 +12,7 @@ $(document).ready(function() {
     $('.search').val('');
     $('.box').empty("");
 
-    $.ajax({
+    $.ajax({ //chiamata per film
       url: "https://api.themoviedb.org/3/search/movie",
       method: "GET",
       data: {
@@ -28,7 +28,38 @@ $(document).ready(function() {
             titoloOriginale: film[i].original_title,
             lingua: film[i].original_language,
             voto: film[i].vote_average,
-            cover: film[i].poster_path
+            cover: film[i].poster_path,
+            tipo: "film"
+          };
+          var source = $('#film-template').html();
+          var template = Handlebars.compile(source);
+          var html = template(context);
+          $('.box').append(html);
+        }
+      },
+      error: function(richiesta,stato,errore){
+        alert("Chiamata fallita!!!");
+      }
+    });
+
+    $.ajax({  //chiamata per serie tv
+      url: "https://api.themoviedb.org/3/search/tv",
+      method: "GET",
+      data: {
+        api_key: "312b2156318a58c856f04d6d1a66e105",
+        language: "it-IT",
+        query: queryRicerca
+      },
+      success: function(data) {
+        var film = data.results;
+        for (var i = 0; i < film.length; i++) {
+          var context = {
+            titolo: film[i].title,
+            titoloOriginale: film[i].original_title,
+            lingua: film[i].original_language,
+            voto: film[i].vote_average,
+            cover: film[i].poster_path,
+            tipo: "serie tv"
           };
           var source = $('#film-template').html();
           var template = Handlebars.compile(source);
