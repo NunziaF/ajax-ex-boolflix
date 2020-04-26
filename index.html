@@ -23,16 +23,37 @@
     </div>
 
     <script id="film-template" type="text/x-handlebars-template">
-      <div class="film">
+      <div class="card">
         <div class="copertina">
           <img src="{{cover}}" alt="">
         </div>
         <div class="info">
-          <h4>Titolo: {{titolo}}</h4>
-          <h4>Titolo originale: {{titoloOriginale}}</h4>
-          <h4 class="bandiere">Lingua: {{{flag}}}</h4>
-          <h4>Voto: {{{voto}}}</h4>
-          <h4>Tipo: {{tipo}}</h4>
+          <ul>
+            <li>
+              <span>Titolo:</span>
+              <span>{{titolo}}</span>
+            </li>
+            <li>
+              <span>Titolo originale:</span>
+              <span>{{titoloOriginale}}</span>
+            </li>
+            <li class="flag">
+              <span>Lingua: </span>
+              <span>{{{flag}}}</span>
+            </li>
+            <li>
+              <span>Voto:</span>
+              <span>{{{voto}}}</span>
+            </li>
+            <li>
+              <span>Tipologia:</span>
+              <span>{{tipo}}</span>
+            </li>
+            <li>
+              <span class="trama">Overview:</span>
+              <span>{{trama}}</span>
+            </li>
+          </ul>
         </div>
       </div>
     </script>

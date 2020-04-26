@@ -19,21 +19,21 @@ $(document).ready(function() {
       url: "https://api.themoviedb.org/3/search/movie",
       method: "GET",
       data: {
-        api_key: "312b2156318a58c856f04d6d1a66e105",
+        api_key: "e50a20205b1bb8fb469327d3702d0bfd",
         language: "it-IT",
         query: queryRicerca
       },
       success: function(data) {
         var film = data.results;
-        var coverInizio = "https://image.tmdb.org/t/p/w342";
         for (var i = 0; i < film.length; i++) {
           var context = {
             titolo: film[i].title,
             titoloOriginale: film[i].original_title,
             flag: flags(film[i].original_language),
             voto: stelle(film[i].vote_average),
-            cover: coverInizio + film[i].poster_path,
-            tipo: "film"
+            cover: noImage(film[i].poster_path),
+            tipo: "film",
+            trama: film[i].overview
           };
 
           var html = template(context);
@@ -49,7 +49,7 @@ $(document).ready(function() {
       url: "https://api.themoviedb.org/3/search/tv",
       method: "GET",
       data: {
-        api_key: "312b2156318a58c856f04d6d1a66e105",
+        api_key: "e50a20205b1bb8fb469327d3702d0bfd",
         language: "it-IT",
         query: queryRicerca
       },
@@ -61,8 +61,9 @@ $(document).ready(function() {
             titoloOriginale: tv[i].original_name,
             flag: flags(tv[i].original_language),
             voto: stelle(tv[i].vote_average),
-            cover: NoImage(tv[i].poster_path),
-            tipo: "serie tv"
+            cover: noImage(tv[i].poster_path),
+            tipo: "serie tv",
+            trama: tv[i].overview
           };
 
           var html = template(context);
@@ -73,7 +74,6 @@ $(document).ready(function() {
         alert("Chiamata fallita!!!");
       }
     });
-
   };
 
   function flags(lingua){                        //sostituzione della lingua con le bandiere
@@ -99,13 +99,21 @@ $(document).ready(function() {
     return stella;
   };
 
-  function NoImage(cover) {    //inserisco immagine vuota dove non c'è cover
+  function noImage(cover) {    //inserisco immagine
     if (cover == null) {
-      cover = 'https://upload.wikimedia.org/wikipedia/commons/4/41/Noimage.svg'
+      cover = "img/imgnd.jpg";
     } else {
-        cover = 'https://image.tmdb.org/t/p/w342' + cover;
+      cover = 'https://image.tmdb.org/t/p/w342' + cover;
     }
     return cover;
   };
+
+
+  $(document).on("mouseenter", '.card', function () {
+    $(".info", this).toggleClass('active');
+  });
+  $(document).on("mouseleave", '.card', function () {
+    $(".info", this).toggleClass('active');
+  });
 
 });
